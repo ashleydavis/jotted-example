@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="jotted.min.css">
+        <script src="jotted.min.js"></script>
+    </head>
+    <body>
+
+        <div id="editor"></div>
+
+        
+        <script>
+            Jotted.plugin('demoPlugin', function (jotted, options) {
+                console.log('Demo plugin!');
+                console.log(options);
+            });
+
+            var jotted = new Jotted(document.querySelector('#editor'), {
+                files: [
+                    {
+                        type: 'js',
+                        url: 'example.js'
+                    },
+                    {
+                        type: 'css',
+                        url: 'example.css',
+                    },
+                    {
+                        type: 'html',
+                        url: 'example.html',
+                    },
+                ]
+            });
+
+            jotted.on('change', function (params, callback) {
+                console.log('change!');
+                console.log(params);
+                callback(null, params);
+            })            
+        </script>
+
+    </body>
+</html>
